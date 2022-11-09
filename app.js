@@ -3,7 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var Jam = require("./models/jam");
+var jams = require("./models/jam");
 
 require('dotenv').config();
 const connectionString = process.env.MONGO_CON
@@ -67,19 +67,19 @@ app.use(function(err, req, res, next) {
 
 async function recreateDB() {
   // Delete everything
-  await Jam.deleteMany();
+  await jams.deleteMany();
   let instance1 = new
-    Jam({"Price": 2, 
+    jams({"Price": 2, 
     "Size": 36, 
     "Flavor": "Strawberry" 
   });  
   let instance2 = new
-    Jam({"Price": 4, 
+    jams({"Price": 4, 
     "Size": 48, 
     "Flavor": "Grape"
   });
   let instance3 = new
-    Jam({"Price": 1, 
+    jams({"Price": 1, 
     "Size": 12, 
     "Flavor": "Apple" 
   });

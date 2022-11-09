@@ -1,5 +1,4 @@
 var express = require('express');
-const jam_controlers= require('../controllers/jam');
 var router = express.Router();
 // Require controller modules.
 var api_controller = require('../controllers/api');
@@ -18,5 +17,4 @@ router.put('/jam/:id', jam_controller.Jam_update_put);
 router.get('/jam/:id', jam_controller.Jam_detail);
 // GET request for list of all Jam items.
 router.get('/jam', jam_controller.Jam_list);
-router.get('/', jam_controlers.Jam_view_all_Page );
 module.exports = router;
