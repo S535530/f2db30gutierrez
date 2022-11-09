@@ -1,14 +1,15 @@
 extends layout
 
 block content
-  h1= title
-  - let results=[{price:2,size:36,flavor:"strawberry"},{price:4,size:48,flavor:"grape"},{price:1,size:12,flavor:"apple"}]
-  div(class="container-fluid")
-  div(class="row")
-  each value,index in results
-    div(class="col-sm-2" onclick=`buy(${index})`)  #{value.price} jam price, in #{value.size}, flavor is #{value.flavor}
+  h1 = title
+  - let results = [{price:2,size:36,flavor:"strawberry"},{price:4,size:48,flavor:"grape"},{price:1,size:12,flavor:"apple"}]
+
+  div.container-fluid
+    div.row
+      each value, index in results
+        div.col-sm-2(onclick=`buy(${index})`)  #{value.price} jam price,<br> in #{value.size},<br> flavor is #{value.flavor}
   script.
     function buy(index)
     {
-      alert(`You purchased Item ${index+1}`)
+      alert(`You purchased Item` + index)
     } 

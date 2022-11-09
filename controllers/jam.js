@@ -45,7 +45,7 @@ exports.Jam_update_put = function (req, res) {
 exports.Jam_view_all_Page = async function (req, res) {
     try {
         theJam = await Jam.find();
-        res.render('Jam', { title: 'Jam Search Results', Jam_Results: theJam });
+        res.render('jam', { title: 'Jam Search Results',  Jam_Results: theJam });
     }
     catch (err) {
         res.status(500);
