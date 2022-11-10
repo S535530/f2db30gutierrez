@@ -11,8 +11,15 @@ exports.Jam_list = async function (req, res) {
     }
 };
 // for a specific Jam.
-exports.Jam_detail = function (req, res) {
-    res.send('NOT IMPLEMENTED: Jam detail: ' + req.params.id);
+exports.Jam_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+        results = await Jam.findById( req.params.id)
+        res.send(results)
+    } catch (error) {
+        res.status(500)
+        res.send(`{"error": document for id ${req.params.id} not found`);
+    }
 };
 // Handle Jam create on POST.
 exports.Jam_create_post = async function (req, res) {
@@ -26,8 +33,8 @@ exports.Jam_create_post = async function (req, res) {
     document.Size = req.body.Size;
 
     try {
-        let result = await document.save();
-        res.send(result);
+        let results = await document.save();
+        res.send(results);
     }
     catch (err) {
         res.status(500);
