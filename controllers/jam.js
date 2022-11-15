@@ -42,12 +42,37 @@ exports.Jam_create_post = async function (req, res) {
     }
 };
 // Handle Jam delete form on DELETE.
-exports.Jam_delete = function (req, res) {
-    res.send('NOT IMPLEMENTED: Jam delete DELETE ' + req.params.id);
+exports.Jam_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+        result = await Jam.findByIdAndDelete( req.params.id)
+        console.log("Removed " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": Error deleting ${err}}`);
+    }
 };
 // Handle Jam update form on PUT.
-exports.Jam_update_put = function (req, res) {
-    res.send('NOT IMPLEMENTED: Jam update PUT ' + req.params.id);
+exports.Jam_update_put = async function(req, res) {
+    console.log(`update on id ${req.params.id} with body
+    ${JSON.stringify(req.body)}`)
+    try {
+        let toUpdate = await Jam.findById( req.params.id)
+        // Do updates of properties
+        if(req.body.Jam_type)
+            toUpdate.Jam_type = req.body.Jam_type;
+        if(req.body.Price) toUpdate.cost = req.body.Price;
+        if(req.body.Size) toUpdate.size = req.body.Size;
+        if(req.body.Flavor) toUpdate.size = req.body.Flavor;
+        let results = await toUpdate.save();
+        console.log("Sucess " + results)
+        res.send(results)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id}
+    failed`);
+    }
 };
 exports.Jam_view_all_Page = async function (req, res) {
     try {
