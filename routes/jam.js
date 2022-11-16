@@ -14,3 +14,6 @@ router.get('/create', jam_controlers.Jam_create_Page);
 
 /* GET create update page */
 router.get('/update', jam_controlers.Jam_update_Page);
+
+/* GET delete jam page */
+router.get('/delete', jam_controlers.Jam_delete_Page)
