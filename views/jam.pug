@@ -6,10 +6,13 @@ block content
     let jams = results
 
   div(class="container-fluid")
-    div(class="row")
+    div(class="row m-1")
       each index in jams
-        div(class="col-sm-2") 
-          p(class="card-Text") #{index["Price"]} jam price
-          p(class="card-Text") in #{index["Size"]}
-          p(class="card-Text") flavor is #{index["Flavor"]}
-  
+        - let destination = `dispatch(\"/jam/update?id=${index._id}\")`
+        div(class="row-sm-2", class="m-1") Jam Flavor #{index.Flavor}(#{index.Size}) priced at #{index.Price}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
+
+  script.
+    function dispatch(path){
+      window.location.href=path
+    }
