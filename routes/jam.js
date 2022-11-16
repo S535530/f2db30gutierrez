@@ -6,5 +6,8 @@ var router = express.Router();
 router.get('/', jam_controlers.Jam_view_all_Page );
 module.exports = router;
 
-/* GET detail costume page */
+/* GET detail jam page */
 router.get('/detail', jam_controlers.Jam_view_one_Page);
+
+/* GET create jam page */
+router.get('/create', jam_controlers.Jam_create_Page);
