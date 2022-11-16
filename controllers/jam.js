@@ -62,9 +62,9 @@ exports.Jam_update_put = async function(req, res) {
         // Do updates of properties
         if(req.body.Jam_type)
             toUpdate.Jam_type = req.body.Jam_type;
-        if(req.body.Price) toUpdate.cost = req.body.Price;
-        if(req.body.Size) toUpdate.size = req.body.Size;
-        if(req.body.Flavor) toUpdate.size = req.body.Flavor;
+        if(req.body.Price) toUpdate.Price = req.body.Price;
+        if(req.body.Size) toUpdate.Size = req.body.Size;
+        if(req.body.Flavor) toUpdate.Flavor = req.body.Flavor;
         let results = await toUpdate.save();
         console.log("Sucess " + results)
         res.send(results)
@@ -104,6 +104,20 @@ exports.Jam_create_Page = function(req, res) {
     console.log("create view")
     try{
         res.render('jamcreate', { title: 'Jam Create'});
+    }
+    catch(err){
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
+// Handle building the view for updating a costume.
+// query provides the id
+exports.Jam_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+        let result = await Jam.findById(req.query.id)
+        res.render('jamupdate', { title: 'Jam Update', toShow: result });
     }
     catch(err){
         res.status(500)

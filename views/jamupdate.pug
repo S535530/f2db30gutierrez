@@ -1,0 +1,40 @@
+extends layout
+block content
+    h1= title
+    - let jamid = toShow._id
+    - let jam_flavor = toShow.Flavor
+    - let jamprice = toShow.Price
+    - let jamsize = toShow.Size
+    div.row(class='mb-2')
+        div.mr-1 ID is
+        div #{jamid}
+        - let actionid = "/resource/jam/" + jamid
+        form(id='JamForm', action= actionid, method="PUT")
+            div.form-group
+                label.jamAttr(for='Flavor') Jam flavor
+                input#Flavor(type='text', name='Flavor', value= jam_flavor )
+            div.form-group
+                label.jamAttr(for='Size') Jam size
+                input#Size(type='number', name='Size', value= jamsize)
+            div.form-group
+                label.jamAttr(for='Price') Jam price
+                input#Price(type='number', name='Price', value= jamprice )
+            input(type="submit")
+
+    script.
+        document.forms['JamForm'].addEventListener('submit', (event) => {
+            event.preventDefault();
+            // TODO do something here to show user that form is being submitted
+            fetch(event.target.action, {
+            method: 'PUT',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+            }).then((resp) => {
+                return resp.json(); // or resp.text() or whatever the server sends
+            }).then((body) => {
+                alert("Update succeded")
+                // TODO handle body
+            }).catch((error) => {
+                // TODO handle error
+                alert("Update failed " + error )
+            });
+        });

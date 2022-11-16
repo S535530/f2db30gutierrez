@@ -11,3 +11,6 @@ router.get('/detail', jam_controlers.Jam_view_one_Page);
 
 /* GET create jam page */
 router.get('/create', jam_controlers.Jam_create_Page);
+
+/* GET create update page */
+router.get('/update', jam_controlers.Jam_update_Page);
