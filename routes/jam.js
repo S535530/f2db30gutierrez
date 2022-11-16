@@ -5,3 +5,6 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', jam_controlers.Jam_view_all_Page );
 module.exports = router;
+
+/* GET detail costume page */
+router.get('/detail', jam_controlers.Jam_view_one_Page);

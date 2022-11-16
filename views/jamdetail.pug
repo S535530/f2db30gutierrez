@@ -1,0 +1,20 @@
+extends layout
+block content
+    h1= title
+    - let jamid = toShow._id
+    - let jam_flavor = toShow.Flavor
+    - let jamcost = toShow.Price
+    - let jamsize = toShow.Size
+    div
+        div.row
+            div(class='jamAttr mr-3') Jam ID is:
+            div #{jamid}
+        div.row
+            div(class='jamAttr mr-3') Jam Type is:
+            div #{jam_flavor}
+        div.row
+            div(class='jamAttr mr-3') Jam Size is:
+            div #{jamsize}
+        div.row
+            div(class='jamAttr mr-3') Jam Cost is:
+            div #{jamprice}
