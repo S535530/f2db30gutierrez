@@ -39,7 +39,7 @@ router.post('/register', function(req, res) {
 })
 
 router.get('/login', function(req, res) {
-  res.render('login', { title: 'Costume App Login', user : req.user });
+  res.render('login', { title: 'Jam App Login', user : req.user });
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {
