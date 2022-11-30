@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1 = title
+  button.btn(class="btn-primary btn-sm ml-1", style="margin: 5px; width: 120px;", onclick=`dispatch(\"/jam/create\")`) Create
   - 
     let jams = results
 
@@ -11,6 +12,8 @@ block content
         - let destination = `dispatch(\"/jam/update?id=${index._id}\")`
         div(class="row-sm-2", class="m-1") Jam Flavor #{index.Flavor}(#{index.Size}) priced at #{index.Price}
           button.btn( class="btn-primary ml-1", onclick= destination) Update
+          button.btn(class="btn-success btn-sm ml-1", style="margin: 5px; width: 120px;", onclick=`dispatch(\"/jam/detail?id=${index._id}\")`) View
+          button.btn(class="btn-secondary btn-sm ml-1", style="margin: 5px; width: 120px;", onclick= `dispatch(\"/jam/delete?id=${index._id}\")`) Delete
 
   script.
     function dispatch(path){
